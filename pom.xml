@@ -50,6 +50,35 @@
                     </archive>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>executable pom</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy-file</goal>
+                        </goals>
+                        <configuration>
+                            <artifactId>myProject</artifactId>
+                            <packaging>jar</packaging>
+                            <version>${project.version}</version>
+                            <groupId>com.yammer.metrics</groupId>
+                            <classifier>bin</classifier>
+                            <file>
+                                target/dependency/metrics-graphite-${project.version}.jar
+                            </file>
+                            <pomFile>
+                                pom.xml
+                            </pomFile>
+                            <url>
+                                http://packages/nexus/content/repositories/snapshots
+                            </url>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
